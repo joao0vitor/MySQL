@@ -69,3 +69,8 @@ update produtos set preco = 60.00 where id=2;
 -- CRUD DELETE --
 
 delete from produtos where id=6;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d299c98f381739297d9b2ea75a277af75965839c

@@ -26,6 +26,7 @@ select * from usuarios;
 
 select * from usuarios where login='admin' and senha=md5('admin');
 
+<<<<<<< HEAD
 -- ========== CREATE TABLE FORNECEDORES==============
 create table fornecedores (
 idfor int primary key auto_increment,
@@ -74,6 +75,9 @@ from fornecedores inner join produtos
 on fornecedores.idfor = produtos.idfor;
 
 select * from fornecedores;
+=======
+drop table produtos; 
+>>>>>>> d299c98f381739297d9b2ea75a277af75965839c
 
 create table produtos (
 	codigo int primary key auto_increment,
@@ -89,6 +93,7 @@ create table produtos (
     localizacao varchar(255),
     custo decimal (10,2) not null,
     lucro decimal(10,2),
+<<<<<<< HEAD
     venda decimal (10,2),
     idfor int not null,
     foreign key (idfor) references fornecedores(idfor)
@@ -131,6 +136,46 @@ values ('999999999','Carregador','Carregadores Apple, samsung, motorola, lg', 'c
 
 insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda, idfor)
 values ('1010101010','Pelicula','Pelicula 3D', 'Peliculos',20171124,70,'10','UN','Setor de peliculas',10,100,300,1);
+=======
+    venda decimal (10,2)
+);
+
+-- modificar o barcode adicionando o unique
+alter table produtos modify column barcode varchar(255) unique;
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('1234567890','Capinha','Capinha para Smartphone', 'Tux Capas',20300720,25,'40','UN','setor de capinhas',10.90,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('111111111','Fone bluetooth','Fone bluetooth aprova dágua', 'fone max',20250410,50,'5','UN','setor de fones',15.90,100,200);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('222222222','Celular Samsung','Samsug A20', 'Pro celulares ',20350926,2,'3','UN','vitrine de smartphone',2000,400,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('333333333','Caixinha de som','Caixinha JBL Camuflada', 'JBL Caixas',20400330,70,'10','UN','pratilheira de caixas de som',220,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('444444444','Teclado','Teclado gamer RGB', 'Teclas HW',20240109,70,'10','UN','Setor de perifericos',140,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('555555555','Mouse','Mouse gamer RGB DPI 1300', 'Ratos fio',20230613,70,'10','UN','Setor de perifericos',110,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('666666666','Monitor','Monitor 24 polegadas 1080p', 'Monitor',20270423,70,'10','UN','Setor de TVs e Monitores',1200,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('777777777','Cadeira','Cadeira gamer', 'caders gamer',20290728,70,'10','UN','Setor de cadeiras',1700,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('888888888','SSD','SSD 1TB', 'Kingston',20190312,70,'10','UN','Vitrine de hardwares',2200,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('999999999','Carregador','Carregadores Apple, samsung, motorola, lg', 'carre cabos',20180122,70,'10','UN','Vitrine de hardwares',35,100,300);
+
+insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
+values ('1010101010','Pelicula','Pelicula 3D', 'Peliculos',20171124,70,'10','UN','Setor de peliculas',10,100,300);
+>>>>>>> d299c98f381739297d9b2ea75a277af75965839c
 
 describe produtos;
 
@@ -225,6 +270,7 @@ from clientes;
 
 select * from clientes where marketing = 'sim';
 
+<<<<<<< HEAD
 -- foreign key(FK) Chave estrangeira que cria o relacionamento
 -- do tipo 1-N com a tabela clientes
 -- FK(pedidos)______________PK(clientes)
@@ -257,5 +303,7 @@ clientes.nome as cliente,
 clientes.fone
 from pedidos inner join clientes
 on pedidos.idcli = clientes.idcli;
+=======
+>>>>>>> d299c98f381739297d9b2ea75a277af75965839c
 
 

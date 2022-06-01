@@ -53,6 +53,7 @@ alter table contatos modify column cel varchar(255) not null;
 alter table contatos drop column obs;
 
 -- excluir a tabela
+<<<<<<< HEAD
 drop table contatos;
 
 
@@ -125,3 +126,6 @@ update contatos set email = 'joaoroberto@gmail.com' where id=4;
 
 -- CRUD DELETE
 delete from contatos where id=2;
+=======
+drop table contatos;
+>>>>>>> d299c98f381739297d9b2ea75a277af75965839c
