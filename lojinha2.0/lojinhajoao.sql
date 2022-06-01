@@ -17,7 +17,7 @@ create table produtos (
 	id int primary key auto_increment,
     nome varchar(255) not null,
     estoque int not null,
-    preco varchar(255) not null
+    preco decimal (10,2)
 );
 
 -- Linha para verificar a tabela
@@ -30,22 +30,22 @@ describe produtos;
 -- Criação da lista
 
 insert into produtos (nome, estoque, preco)
-values ('Capinha Smartphone', '10', '15.00');
+values ('Capinha Smartphone', 10, 15.00);
 
 insert into produtos (nome, estoque, preco)
-values ('Carregador Iphone', '7', '80.00');
+values ('Carregador Iphone', 7, 80.00);
 
 insert into produtos (nome, estoque, preco)
-values ('Pelicula', '20', '12.00');
+values ('Pelicula', 20, 12.00);
 
 insert into produtos (nome, estoque, preco)
-values ('Caixa de som', '25', '50.00');
+values ('Caixa de som', 25, 50.00);
 
 insert into produtos (nome, estoque, preco)
-values ('Fone', '30', '15.00');
+values ('Fone', 30, 15.00);
 
 insert into produtos (nome, estoque, preco)
-values ('Pen Drive', '21', '32.00');
+values ('Pen Drive', 21, 32.00);
 
 -- CRUD READ --
 
@@ -62,12 +62,10 @@ select nome, estoque, preco from produtos order by nome;
 -- comando para atualizar a lista de produtos
 update produtos set nome = 'Carregador Samsung' where id=2;
 
-update produtos set estoque = '10' where id=2;
+update produtos set estoque = 10 where id=2;
 
-update produtos set preco = '60.00' where id=2;
+update produtos set preco = 60.00 where id=2;
 
 -- CRUD DELETE --
 
-delete from produtos where id=7; 
-
-
+delete from produtos where id=6;
