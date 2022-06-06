@@ -1,6 +1,7 @@
 /**
 Tabela de usuários
 @author joao vitor
+@version 1.1
 */
 
 create database tabelausuario;
@@ -26,7 +27,7 @@ select * from usuarios;
 
 select * from usuarios where login='admin' and senha=md5('admin');
 
-<<<<<<< HEAD
+
 -- ========== CREATE TABLE FORNECEDORES==============
 create table fornecedores (
 idfor int primary key auto_increment,
@@ -75,9 +76,9 @@ from fornecedores inner join produtos
 on fornecedores.idfor = produtos.idfor;
 
 select * from fornecedores;
-=======
+
 drop table produtos; 
->>>>>>> d299c98f381739297d9b2ea75a277af75965839c
+
 
 create table produtos (
 	codigo int primary key auto_increment,
@@ -93,7 +94,7 @@ create table produtos (
     localizacao varchar(255),
     custo decimal (10,2) not null,
     lucro decimal(10,2),
-<<<<<<< HEAD
+
     venda decimal (10,2),
     idfor int not null,
     foreign key (idfor) references fornecedores(idfor)
@@ -136,9 +137,6 @@ values ('999999999','Carregador','Carregadores Apple, samsung, motorola, lg', 'c
 
 insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda, idfor)
 values ('1010101010','Pelicula','Pelicula 3D', 'Peliculos',20171124,70,'10','UN','Setor de peliculas',10,100,300,1);
-=======
-    venda decimal (10,2)
-);
 
 -- modificar o barcode adicionando o unique
 alter table produtos modify column barcode varchar(255) unique;
@@ -175,7 +173,6 @@ values ('999999999','Carregador','Carregadores Apple, samsung, motorola, lg', 'c
 
 insert into produtos (barcode,produto,descricao,fabricante,dataval,estoque,estoquemin,unidade,localizacao,custo,lucro,venda)
 values ('1010101010','Pelicula','Pelicula 3D', 'Peliculos',20171124,70,'10','UN','Setor de peliculas',10,100,300);
->>>>>>> d299c98f381739297d9b2ea75a277af75965839c
 
 describe produtos;
 
@@ -270,7 +267,6 @@ from clientes;
 
 select * from clientes where marketing = 'sim';
 
-<<<<<<< HEAD
 -- foreign key(FK) Chave estrangeira que cria o relacionamento
 -- do tipo 1-N com a tabela clientes
 -- FK(pedidos)______________PK(clientes)
@@ -303,7 +299,40 @@ clientes.nome as cliente,
 clientes.fone
 from pedidos inner join clientes
 on pedidos.idcli = clientes.idcli;
-=======
->>>>>>> d299c98f381739297d9b2ea75a277af75965839c
 
+-- ===== Linha de tabela de carrinho =======
+-- tabela de apoio para criar um relacionamento de tipo M-M
+-- (muitos para muitos) neste caso não criamos a chave primaria
+create table carrinho (
+	pedido int not null,
+    codigo int not null,
+    quantidade int not null,
+    foreign key(pedido) references pedidos(pedido),
+    foreign key(codigo) references produtos(codigo)
+);
+insert into carrinho values (1,2,3);
+insert into carrinho values (1,4,1);
 
+select * from carrinho;
+
+-- Exibir o carrinho
+select pedidos.pedido,
+carrinho.codigo as código,
+produtos.produto,
+carrinho.quantidade,
+produtos.venda,
+produtos.venda * carrinho.quantidade as sub_total
+from (carrinho inner join pedidos on carrinho.pedido =
+pedidos.pedido)
+inner join produtos on carrinho.codigo = produtos.codigo;
+
+-- Total do pedido(carrinho)
+select sum(produtos.venda * carrinho.quantidade) as total
+from carrinho inner join produtos on carrinho.codigo = produtos.codigo;
+
+-- atualização do estoque
+update carrinho
+inner join produtos
+on carrinho.codigo = produtos.codigo
+set produtos.estoque = produtos.estoque - carrinho.quantidade
+where carrinho.quantidade > 0;
